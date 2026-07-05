@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+/* ============================================================
+   TEMA WEDDING — Elegant Floral (rose & gold)
+   Ganti nilai di sini untuk mengubah seluruh nuansa warna.
+   ============================================================ */
+@theme {
+  --color-cream: #faf6f0;
+  --color-blush: #f4e6e1;
+  --color-rose: #c89b8c;
+  --color-rose-deep: #a87768;
+  --color-gold: #b8924f;
+  --color-ink: #4a3f3a;
+  --color-muted: #8a7a72;
+
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-script: var(--font-greatvibes), cursive;
+  --font-body: var(--font-poppins), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+/* Kelas font bantu */
+.font-display { font-family: var(--font-display); }
+.font-script { font-family: var(--font-script); }
+
+/* Scrollbar halus */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-blush); }
+::-webkit-scrollbar-thumb { background: var(--color-rose); border-radius: 4px; }
+
+/* Animasi ornamen lembut */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-floaty { animation: floaty 4s ease-in-out infinite; }
+
+/* Denyut lembut untuk wax seal (porting Stitch "Timeless Elegance") */
+@keyframes wax-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-gold) 45%, transparent); }
+  70% { box-shadow: 0 0 0 18px color-mix(in srgb, var(--color-gold) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-gold) 0%, transparent); }
+}
+.animate-wax-pulse { animation: wax-pulse 3s infinite cubic-bezier(0.66, 0, 0, 1); }
+
+/* Aksesibilitas: indikator fokus jelas untuk navigasi keyboard */
+:focus-visible {
+  outline: 2px solid var(--color-rose-deep);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Hormati preferensi pengguna yang mengurangi gerak */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,91 @@
+'use client';
+import { useState } from 'react';
+import { Check } from 'lucide-react';
+import Reveal from './ui/Reveal';
+import SectionTitle from './ui/SectionTitle';
+
+// Form konfirmasi kehadiran (data dummy / state lokal).
+// TODO: hubungkan onSubmit ke backend/Firebase nanti.
+export default function RSVPForm({ onSubmit }) {
+  const [form, setForm] = useState({ name: '', attendance: 'hadir', guests: 1 });
+  const [done, setDone] = useState(false);
+
+  const handle = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const submit = (e) => {
+    e.preventDefault();
+    if (!form.name.trim()) return;
+    onSubmit?.(form);
+    setDone(true);
+  };
+
+  return (
+    <section className="bg-cream px-6 py-20">
+      <div className="mx-auto max-w-lg">
+        <SectionTitle kicker="Kehadiran" title="Konfirmasi RSVP" />
+
+        {done ? (
+          <Reveal className="mt-10 rounded-2xl bg-blush/60 p-8 text-center">
+            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-rose-deep text-cream">
+              <Check size={26} />
+            </div>
+            <p className="mt-4 font-display text-2xl text-ink">Terima kasih, {form.name}!</p>
+            <p className="mt-1 text-sm text-muted">Konfirmasi kehadiran Anda telah kami terima.</p>
+          </Reveal>
+        ) : (
+          <Reveal className="mt-10">
+            <form onSubmit={submit} className="space-y-5 rounded-2xl bg-blush/40 p-8 shadow-sm">
+              <div>
+                <label className="text-sm font-medium text-ink">Nama</label>
+                <input
+                  name="name"
+                  value={form.name}
+                  onChange={handle}
+                  placeholder="Nama Anda"
+                  className="mt-1 w-full rounded-lg border border-rose/40 bg-cream px-4 py-3 text-sm outline-none focus:border-rose-deep"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="text-sm font-medium text-ink">Konfirmasi</label>
+                <select
+                  name="attendance"
+                  value={form.attendance}
+                  onChange={handle}
+                  className="mt-1 w-full rounded-lg border border-rose/40 bg-cream px-4 py-3 text-sm outline-none focus:border-rose-deep"
+                >
+                  <option value="hadir">Hadir</option>
+                  <option value="tidak">Tidak Hadir</option>
+                  <option value="ragu">Masih Ragu</option>
+                </select>
+              </div>
+
+              {form.attendance === 'hadir' && (
+                <div>
+                  <label className="text-sm font-medium text-ink">Jumlah Tamu</label>
+                  <input
+                    type="number"
+                    name="guests"
+                    min={1}
+                    max={10}
+                    value={form.guests}
+                    onChange={handle}
+                    className="mt-1 w-full rounded-lg border border-rose/40 bg-cream px-4 py-3 text-sm outline-none focus:border-rose-deep"
+                  />
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="w-full rounded-full bg-rose-deep py-3 text-sm font-medium text-cream transition hover:bg-ink"
+              >
+                Kirim Konfirmasi
+              </button>
+            </form>
+          </Reveal>
+        )}
+      </div>
+    </section>
+  );
+}
