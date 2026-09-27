@@ -1,5 +1,11 @@
 # Undangan Digital — Wedding
 
+**Demo live:** https://undangan-wedding-eight.vercel.app
+
+![Tangkapan layar](public/og.jpg)
+
+> Undangan contoh dengan data fiktif. Formulir RSVP hanya demo dan tidak mengirim data.
+
 Template undangan pernikahan digital. Dibangun dengan **Next.js 15 (App Router)**, **React 19**, **Tailwind CSS v4**, **Framer Motion**, dan ikon **lucide-react**.
 
 Ini adalah **template emas**: pola & struktur di sini dipakai sebagai basis untuk varian undangan lain (engagement, khitanan, aqiqah, birthday, wisuda, korporat, reuni).
@@ -32,7 +38,7 @@ Untuk memakai ulang template ini, cukup ubah `lib/data.js` — komponen tidak pe
 - Love story / timeline
 - Galeri foto
 - Amplop digital (salin nomor rekening)
-- RSVP & Ucapan — **data dummy / state lokal** (siap dihubungkan ke backend/Firebase)
+- RSVP & Ucapan — **mode demo**: data tidak dikirim ke mana pun, dan pesan suksesnya mengatakan itu terus terang (siap dihubungkan ke backend)
 - Musik latar (taruh file di `public/music/song.mp3`)
 
 ## Struktur
@@ -56,3 +62,7 @@ components/
 
 - Foto memakai placeholder `picsum.photos` (lihat `lib/data.js`). Ganti dengan foto asli.
 - Tambahkan file `public/music/song.mp3` agar musik latar berfungsi.
+
+---
+
+Bagian dari koleksi 8 undangan digital di [PortalUndangan](https://portal-undangan-eta.vercel.app). Dibuat oleh [PintuWeb](https://pintuweb.com), jasa pembuatan website.
