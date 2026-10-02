@@ -22,15 +22,18 @@ function BankCard({ item }) {
     <div className="rounded-2xl bg-gradient-to-br from-rose-deep to-ink p-6 text-cream shadow-lg">
       <div className="flex items-center justify-between">
         <span className="text-lg font-semibold tracking-wide">{item.bank}</span>
-        <Gift size={20} className="opacity-70" />
+        <Gift size={20} className="opacity-70" aria-hidden="true" />
       </div>
       <p className="mt-6 font-display text-2xl tracking-widest">{item.number}</p>
+      {item.contoh && (
+        <span className="mt-1 inline-block rounded-full bg-cream/20 px-2.5 py-0.5 text-[11px] tracking-wide">Nomor contoh</span>
+      )}
       <p className="mt-1 text-sm opacity-80">a.n. {item.holder}</p>
       <button
         onClick={copy}
         className="mt-4 inline-flex items-center gap-2 rounded-full bg-cream/20 px-4 py-2 text-xs font-medium transition hover:bg-cream/30"
       >
-        {copied ? <Check size={14} /> : <Copy size={14} />}
+        {copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}
         {copied ? 'Tersalin' : 'Salin Nomor'}
       </button>
     </div>

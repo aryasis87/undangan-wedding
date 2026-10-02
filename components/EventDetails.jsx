@@ -13,14 +13,14 @@ function EventCard({ event, delay }) {
         <div className="mx-auto mt-4 h-px w-12 bg-gold/50" />
         <ul className="mt-6 space-y-3 text-sm text-ink">
           <li className="flex items-center justify-center gap-2">
-            <CalendarDays size={16} className="text-gold" /> {event.date}
+            <CalendarDays size={16} className="text-gold" aria-hidden="true" /> {event.date}
           </li>
           <li className="flex items-center justify-center gap-2">
-            <Clock size={16} className="text-gold" /> {event.time}
+            <Clock size={16} className="text-gold" aria-hidden="true" /> {event.time}
           </li>
           <li className="flex flex-col items-center gap-1">
             <span className="flex items-center gap-2 font-medium">
-              <MapPin size={16} className="text-gold" /> {event.venue}
+              <MapPin size={16} className="text-gold" aria-hidden="true" /> {event.venue}
             </span>
             <span className="text-muted">{event.address}</span>
           </li>

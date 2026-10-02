@@ -9,7 +9,7 @@ const initialWishes = [
   { id: 2, name: 'Maya Putri', message: 'Bahagia selalu untuk kalian berdua. Barakallah!' },
 ];
 
-// Buku tamu / ucapan & doa (data dummy / state lokal).
+// Buku tamu / ucapan & doa. Contoh: ucapan baru hanya tampil di perangkat pengirim (state lokal).
 export default function WishesForm() {
   const [wishes, setWishes] = useState(initialWishes);
   const [form, setForm] = useState({ name: '', message: '' });
@@ -28,14 +28,18 @@ export default function WishesForm() {
 
         <Reveal className="mt-10">
           <form onSubmit={submit} className="space-y-4 rounded-2xl bg-cream p-6 shadow-sm">
+            <label htmlFor="ucapan-nama" className="sr-only">Nama</label>
             <input
+              id="ucapan-nama"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="Nama Anda"
               className="w-full rounded-lg border border-rose/40 bg-cream px-4 py-3 text-sm outline-none focus:border-rose-deep"
               required
             />
+            <label htmlFor="ucapan-pesan" className="sr-only">Ucapan dan doa</label>
             <textarea
+              id="ucapan-pesan"
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               placeholder="Tulis ucapan & doa..."
@@ -47,12 +51,13 @@ export default function WishesForm() {
               type="submit"
               className="inline-flex items-center gap-2 rounded-full bg-rose-deep px-6 py-3 text-sm font-medium text-cream transition hover:bg-ink"
             >
-              <Send size={15} /> Kirim Ucapan
+              <Send size={15} aria-hidden="true" /> Kirim Ucapan
             </button>
           </form>
         </Reveal>
 
-        <div className="mt-8 max-h-80 space-y-3 overflow-y-auto pr-1">
+        <p className="mt-6 text-center text-xs text-muted">Undangan contoh: ucapan Anda hanya tampil di layar ini.</p>
+        <div className="mt-3 max-h-80 space-y-3 overflow-y-auto pr-1" aria-live="polite">
           {wishes.map((w) => (
             <div key={w.id} className="rounded-xl bg-cream p-4 shadow-sm">
               <p className="font-medium text-ink">{w.name}</p>

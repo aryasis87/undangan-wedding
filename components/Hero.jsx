@@ -16,7 +16,7 @@ export default function Hero() {
   return (
     <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 text-center">
       <Image
-        src={couple.groom.photo}
+        src={config.heroImage}
         alt=""
         fill
         priority

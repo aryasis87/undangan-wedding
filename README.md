@@ -1,68 +1,56 @@
-# Undangan Digital — Wedding
+# Undangan Pernikahan — Raka & Sinta
+
+Klasik floral rose & emas. Sampul berupa amplop pusaka dengan segel lilin “Buka Undangan”, lalu profil mempelai berbingkai lengkung, rangkaian akad & resepsi, cerita cinta, galeri, dan amplop digital.
 
 **Demo live:** https://undangan-wedding-eight.vercel.app
 
 ![Tangkapan layar](public/og.jpg)
 
-> Undangan contoh dengan data fiktif. Formulir RSVP hanya demo dan tidak mengirim data.
+> Contoh dengan data fiktif: nama, tempat, dan nomor rekening tidak sungguhan. Formulir hanya demo dan mengatakannya terus terang. Foto adalah placeholder berlabel yang siap diganti.
 
-Template undangan pernikahan digital. Dibangun dengan **Next.js 15 (App Router)**, **React 19**, **Tailwind CSS v4**, **Framer Motion**, dan ikon **lucide-react**.
+## Fitur
 
-Ini adalah **template emas**: pola & struktur di sini dipakai sebagai basis untuk varian undangan lain (engagement, khitanan, aqiqah, birthday, wisuda, korporat, reuni).
+- Sampul amplop yang menyapa nama tamu (`?to=Nama`)
+- Hitung mundur menuju akad (berganti jadi ucapan terima kasih setelah lewat)
+- Akad & resepsi dengan tombol “Tambah ke Kalender”
+- Cerita cinta, galeri dengan lightbox, peta lokasi
+- Amplop digital: salin nomor rekening (nomor contoh diberi label)
+- RSVP & ucapan — mode demo, terus terang tidak mengirim data
+- **`/kirim` — alat tuan rumah:** ketik daftar tamu, dapatkan tautan pribadi tiap tamu dan pesan WhatsApp siap kirim. Semua diproses di peramban (localStorage), tanpa server.
+- Musik latar dengan tombol putar/jeda (judul lagu tampil di tombol dan footer)
+- Halaman 404 bergaya sendiri
 
-## Menjalankan
+## Mengganti isi
+
+Seluruh isi ada di satu file: `lib/data.js` (nama, tanggal, acara, galeri, musik, pesan untuk /kirim). Komponen tidak perlu disentuh.
+
+- **Tanggal:** ubah teks tanggal *dan* nilai ISO (`mainDate`, `start`, `end`) — hitung mundur dan tombol kalender memakai nilai ISO.
+- **Peta:** contoh menunjuk area kota; ganti `q=` di `location.mapEmbed` dan `mapLink` dengan nama tempat atau koordinat.
+- **Foto:** timpa berkas di `public/images/` dengan nama yang sama (potret 3:4).
+- **Musik:** timpa `public/music/latar.mp3`, lalu ubah `music.title` dan `music.credit`. Pastikan Anda berhak memakai lagunya.
+
+## Gambar & kredit
+
+- `public/images/*.webp` — placeholder berlabel buatan sendiri (bukan foto stok), digambar ulang dari SVG agar tidak bergantung pada layanan luar.
+- `public/music/latar.mp3` — *Canon in D — Johann Pachelbel*, rekaman US Air Force Band, domain publik — [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Canon_(2004)_-_Strolling_Strings_-_United_States_Air_Force_Band.mp3). Diperkecil ke MP3 mono 80 kbps.
+
+## Teknologi
+
+- Next.js 15.5 (App Router) dan React 19
+- Tailwind CSS v4 (token tema di `app/globals.css`)
+- Framer Motion, lucide-react
+- Font: Cormorant Garamond, Great Vibes, Poppins (next/font)
+- SEO: metadata, Open Graph, JSON-LD (WebSite), sitemap.xml, robots.txt
+
+## Menjalankan secara lokal
 
 ```bash
 npm install
 npm run dev
 ```
 
-Buka http://localhost:3000
-
-## Konsep utama: pisah DATA dari TAMPILAN
-
-Seluruh isi undangan (nama, tanggal, acara, galeri, rekening, dll) ada di **satu file**:
-
-```
-lib/data.js
-```
-
-Untuk memakai ulang template ini, cukup ubah `lib/data.js` — komponen tidak perlu disentuh.
-
-## Fitur
-
-- Layar sampul (cover) dengan **nama tamu personal** lewat URL: `?to=Nama%20Tamu`
-- Hero, quote pembuka, profil mempelai
-- Countdown menuju hari H
-- Rangkaian acara (akad & resepsi) + lokasi (Google Maps embed)
-- Love story / timeline
-- Galeri foto
-- Amplop digital (salin nomor rekening)
-- RSVP & Ucapan — **mode demo**: data tidak dikirim ke mana pun, dan pesan suksesnya mengatakan itu terus terang (siap dihubungkan ke backend)
-- Musik latar (taruh file di `public/music/song.mp3`)
-
-## Struktur
-
-```
-app/
-  layout.js        # font + metadata
-  page.js          # rangkai semua section + state buka undangan
-  globals.css      # token tema (warna & font)
-lib/
-  data.js          # >>> SEMUA ISI UNDANGAN DI SINI <<<
-  hooks.js         # useCountdown, useGuestName
-components/
-  ui/Reveal.jsx, ui/SectionTitle.jsx   # komponen UI bersama
-  Cover, Hero, Opening, CoupleSection, CountdownTimer,
-  EventDetails, LoveStory, Gallery, MapEmbed,
-  GiftSection, RSVPForm, WishesForm, Footer, MusicPlayer
-```
-
-## Catatan
-
-- Foto memakai placeholder `picsum.photos` (lihat `lib/data.js`). Ganti dengan foto asli.
-- Tambahkan file `public/music/song.mp3` agar musik latar berfungsi.
+Buka http://localhost:3000 — coba juga http://localhost:3000/?to=Nama+Tamu dan http://localhost:3000/kirim.
 
 ---
 
-Bagian dari koleksi 8 undangan digital di [PortalUndangan](https://portal-undangan-eta.vercel.app). Dibuat oleh [PintuWeb](https://pintuweb.com), jasa pembuatan website.
+Bagian dari koleksi 8 undangan digital di [PortalUndangan](https://portal-undangan-eta.vercel.app). Dibuat oleh [PintuWeb](https://www.pintuweb.com), jasa pembuatan website.

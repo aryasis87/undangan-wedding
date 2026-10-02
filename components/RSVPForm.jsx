@@ -29,9 +29,9 @@ export default function RSVPForm({ onSubmit }) {
         <SectionTitle kicker="Kehadiran" title="Konfirmasi RSVP" />
 
         {done ? (
-          <Reveal className="mt-10 rounded-2xl bg-blush/60 p-8 text-center">
+          <Reveal className="mt-10 rounded-2xl bg-blush/60 p-8 text-center" role="status">
             <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-rose-deep text-cream">
-              <Check size={26} />
+              <Check size={26} aria-hidden="true" />
             </div>
             <p className="mt-4 font-display text-2xl text-ink">Terima kasih, {form.name}!</p>
             <p className="mt-2 text-sm text-muted">
@@ -51,8 +51,9 @@ export default function RSVPForm({ onSubmit }) {
           <Reveal className="mt-10">
             <form onSubmit={submit} className="space-y-5 rounded-2xl bg-blush/40 p-8 shadow-sm">
               <div>
-                <label className="text-sm font-medium text-ink">Nama</label>
+                <label htmlFor="rsvp-nama" className="text-sm font-medium text-ink">Nama</label>
                 <input
+                  id="rsvp-nama"
                   name="name"
                   value={form.name}
                   onChange={handle}
@@ -63,8 +64,9 @@ export default function RSVPForm({ onSubmit }) {
               </div>
 
               <div>
-                <label className="text-sm font-medium text-ink">Konfirmasi</label>
+                <label htmlFor="rsvp-hadir" className="text-sm font-medium text-ink">Konfirmasi</label>
                 <select
+                  id="rsvp-hadir"
                   name="attendance"
                   value={form.attendance}
                   onChange={handle}
@@ -78,8 +80,9 @@ export default function RSVPForm({ onSubmit }) {
 
               {form.attendance === 'hadir' && (
                 <div>
-                  <label className="text-sm font-medium text-ink">Jumlah Tamu</label>
+                  <label htmlFor="rsvp-jumlah" className="text-sm font-medium text-ink">Jumlah Tamu</label>
                   <input
+                    id="rsvp-jumlah"
                     type="number"
                     name="guests"
                     min={1}

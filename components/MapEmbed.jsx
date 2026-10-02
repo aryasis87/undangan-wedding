@@ -21,7 +21,8 @@ export default function MapEmbed() {
               allowFullScreen
             />
           </div>
-          <p className="mt-4 text-center text-sm text-muted">{location.label}</p>
+          <p className="mt-4 text-center text-sm text-ink">{location.label}</p>
+          {location.note && <p className="mt-1 text-center text-xs text-muted">{location.note}</p>}
           <div className="mt-5 text-center">
             <a
               href={location.mapLink}
@@ -29,7 +30,7 @@ export default function MapEmbed() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-rose-deep px-6 py-3 text-sm font-medium text-cream transition hover:bg-ink"
             >
-              <MapPin size={16} /> Buka di Google Maps
+              <MapPin size={16} aria-hidden="true" /> Buka di Google Maps
             </a>
           </div>
         </Reveal>
