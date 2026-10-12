@@ -7,7 +7,7 @@ import SectionTitle from './ui/SectionTitle';
 // Form konfirmasi kehadiran. Ini undangan contoh: data tidak dikirim ke mana pun,
 // dan pesan suksesnya mengatakan itu terus terang.
 const PESAN_URL =
-  'https://wa.me/6281339908765?text=' +
+  'https://wa.me/6285190931399?text=' +
   encodeURIComponent('Halo PintuWeb, saya mau pesan undangan pernikahan digital seperti contoh Raka & Sinta.');
 
 export default function RSVPForm({ onSubmit }) {
